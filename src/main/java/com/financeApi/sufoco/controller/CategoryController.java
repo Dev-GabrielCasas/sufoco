@@ -22,6 +22,7 @@ public class CategoryController {
     public CategoryResponseDTO create(@Valid @RequestBody CategoryRequestDTO dto) {
         return service.create(dto);
     }
+    
 
     @GetMapping
     public List<CategoryResponseDTO> getAll() {

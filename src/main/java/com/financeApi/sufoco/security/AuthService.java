@@ -21,6 +21,9 @@ public class AuthService {
     }
 
     public String register(String email, String password) {
+        System.out.println("REGISTER EMAIL: " + email);
+        System.out.println("REGISTER PASSWORD: " + password);
+
         if (userRepository.findByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Email já cadastrado.");
         }
@@ -34,6 +37,11 @@ public class AuthService {
     public String login(String email, String password) {
         UserModel user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Email ou senha inválidos."));
+        
+        System.out.println("LOGIN EMAIL: " + email);
+        System.out.println("LOGIN PASSWORD: " + password);
+        System.out.println("HASH NO BANCO: " + user.getPassword());
+
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("Email ou senha inválidos.");
         }

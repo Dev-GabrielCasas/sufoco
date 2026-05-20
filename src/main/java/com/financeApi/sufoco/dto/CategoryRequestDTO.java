@@ -1,7 +1,10 @@
 package com.financeApi.sufoco.dto;
 
+import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotBlank;
 
 public record CategoryRequestDTO(
-        @NotBlank String name
+        @NotBlank
+        @Size(max = 30)
+        String name
 ) {}

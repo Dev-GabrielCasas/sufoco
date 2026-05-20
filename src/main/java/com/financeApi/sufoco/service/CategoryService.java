@@ -24,6 +24,10 @@ public class CategoryService {
 
     public CategoryResponseDTO create(CategoryRequestDTO dto) {
         UserModel user = authHelper.getLoggedUser();
+        boolean exists = repository.existsByNameAndUser(dto.name(), user);
+            if (exists) {
+            throw new RuntimeException("Categoria já existe.");
+            }
         Category category = new Category();
         category.setName(dto.name());
         category.setUser(user);
@@ -48,6 +52,15 @@ public class CategoryService {
         repository.delete(category);
     }
 
+    public CategoryResponseDTO update(Long id, CategoryRequestDTO dto) {
+
+        Category category = getOrThrow(id);
+
+        category.setName(dto.name());
+
+        return toResponse(repository.save(category));
+    }
+    
     public Category getOrThrow(Long id) {
         UserModel user = authHelper.getLoggedUser();
         return repository.findByIdAndUser(id, user)
