@@ -8,6 +8,7 @@ import com.financeApi.sufoco.model.UserModel;
 import com.financeApi.sufoco.repository.CategoryRepository;
 import com.financeApi.sufoco.security.AuthHelper;
 import org.springframework.stereotype.Service;
+import com.financeApi.sufoco.service.CategoryService;
 
 import java.util.List;
 
@@ -53,11 +54,8 @@ public class CategoryService {
     }
 
     public CategoryResponseDTO update(Long id, CategoryRequestDTO dto) {
-
         Category category = getOrThrow(id);
-
         category.setName(dto.name());
-
         return toResponse(repository.save(category));
     }
     
@@ -69,5 +67,26 @@ public class CategoryService {
 
     private CategoryResponseDTO toResponse(Category c) {
         return new CategoryResponseDTO(c.getId(), c.getName());
+    }
+    public void createDefaultCategories(UserModel user) {
+        String[] defaultCategories = {
+                "Mercado",
+                "Casa",
+                "Transporte",
+                "Carro",
+                "Energia/Luz",
+                "Internet",
+                "Lazer",
+                "Saúde",
+                "Educação",
+                "Salário"
+        };
+
+        for (String categoryName : defaultCategories) {
+            Category category = new Category();
+            category.setName(categoryName);
+            category.setUser(user);
+            repository.save(category);
+        }
     }
 }

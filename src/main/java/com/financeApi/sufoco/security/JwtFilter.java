@@ -1,5 +1,6 @@
 package com.financeApi.sufoco.security;
 
+import com.financeApi.sufoco.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

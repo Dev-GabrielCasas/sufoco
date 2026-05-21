@@ -32,6 +32,7 @@ export default function Login() {
             const token = response.data.token;
 
             localStorage.setItem("token", token);
+            console.log("token salvo local storage", token);
 
             navigate("/dashboard");
 

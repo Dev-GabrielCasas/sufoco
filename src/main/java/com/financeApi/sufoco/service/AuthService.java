@@ -1,9 +1,10 @@
-package com.financeApi.sufoco.security;
+package com.financeApi.sufoco.service;
 
 import com.financeApi.sufoco.model.UserModel;
 import com.financeApi.sufoco.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class AuthService {
@@ -11,14 +12,16 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final CategoryService categoryService;
 
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
-                       JwtService jwtService) {
+                       JwtService jwtService,
+                       CategoryService categoryService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
-    }
+        this.categoryService = categoryService;}
 
     public String register(String email, String password) {
         System.out.println("REGISTER EMAIL: " + email);
@@ -31,6 +34,7 @@ public class AuthService {
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
+        categoryService.createDefaultCategories(user);
         return jwtService.generateToken(email);
     }
 
@@ -47,4 +51,4 @@ public class AuthService {
         }
         return jwtService.generateToken(email);
     }
-}
+ }

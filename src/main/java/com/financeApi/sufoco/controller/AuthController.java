@@ -1,6 +1,6 @@
 package com.financeApi.sufoco.controller;
 
-import com.financeApi.sufoco.security.AuthService;
+import com.financeApi.sufoco.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

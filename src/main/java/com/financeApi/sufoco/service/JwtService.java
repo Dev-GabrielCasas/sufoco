@@ -1,4 +1,4 @@
-package com.financeApi.sufoco.security;
+package com.financeApi.sufoco.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
