@@ -121,7 +121,7 @@ public class TransactionService {
         BigDecimal totalIncome = repository.sumMonthlyIncome(user, year, month);
         BigDecimal totalExpense = repository.sumMonthlyExpense(user, year, month);
         BigDecimal balance = totalIncome.subtract(totalExpense);
-        return new MonthlyReportDTO(month, year, categories, totalExpense, totalIncome, balance);
+        return new MonthlyReportDTO(totalIncome,totalExpense, balance, categories,month, year);
     }
 
     public Page<TransactionResponseDTO> findAllPaged(Pageable pageable) {

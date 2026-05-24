@@ -19,4 +19,13 @@ public class UserModel {
 
     @Column(nullable = false)
     private String password;
+
+    @Column
+    private String name;
+
+    @Column
+    private String address;
+
+    @Column(length = 1000000)
+    private String photoUrl;
 }
