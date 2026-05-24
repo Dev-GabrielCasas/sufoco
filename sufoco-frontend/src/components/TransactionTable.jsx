@@ -1,4 +1,4 @@
-export default function TransactionTable({ transactions }) {
+export default function TransactionTable({ transactions =[] }) {
 
     return (
 
@@ -9,25 +9,18 @@ export default function TransactionTable({ transactions }) {
             rounded-2xl
             overflow-hidden
         ">
-
             <table className="w-full">
-
                 <thead className="bg-zinc-800">
-
                 <tr>
-
                     <th className="text-left text-zinc-300 px-6 py-4">
                         Descrição
                     </th>
-
                     <th className="text-left text-zinc-300 px-6 py-4">
                         Categoria
                     </th>
-
                     <th className="text-left text-zinc-300 px-6 py-4">
                         Valor
                     </th>
-
                     <th className="text-left text-zinc-300 px-6 py-4">
                         Tipo
                     </th>
