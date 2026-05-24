@@ -18,6 +18,10 @@ import {
 export default function Transactions() {
     const [transactions, setTransactions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [customCategories, setCustomCategories] = useState([]);
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState("");
+    const [isCreatingCategory, setIsCreatingCategory] = useState(false);
     const [formData, setFormData] = useState({
         description: "",
         amount: "",
